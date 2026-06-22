@@ -1,0 +1,31 @@
+git config --global user.name "Chainarin04"
+git config --global user.email "684259042@webmail.npru.ac.th"
+
+
+รอบที่ 1
+
+git init
+
+
+git commit -m "first commit" 
+
+
+git add .
+
+git branch -M main
+
+git remote add origin
+https://github.com/iamsamitdev/gitbranch.git
+(ปรับเปลี่ยนไปตามผู้ใช้แต่ละคน ที่สร้าง
+Repository ใน GitHub)
+
+git push -u origin main
+
+
+
+รอบที่2
+git add .
+
+git commit -m "ใส่ข้อความอธิบาย เช่น อัปเดตไฟล์ล่าสุด"
+
+git push -u origin main
