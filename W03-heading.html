@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop: HTML Headings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --bg-0: #0a0a0d;
+            --bg-1: #111116;
+            --bg-2: #161620;
+            --line: #232330;
+            --gold: #d4af7a;
+            --gold-soft: #b89968;
+            --text-0: #f1efe9;
+            --text-1: #9b9aa8;
+            --text-2: #6b6a78;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
+            --sans: 'Inter', 'Segoe UI', sans-serif;
+            --h1: #e8637a;
+            --h1-bg: rgba(232, 99, 122, 0.1);
+            --h2: #e08f3f;
+            --h2-bg: rgba(224, 143, 63, 0.1);
+            --h3: #d4af7a;
+            --h3-bg: rgba(212, 175, 122, 0.1);
+            --h4: #4fb8a8;
+            --h4-bg: rgba(79, 184, 168, 0.1);
+            --h5: #5d9bd1;
+            --h5-bg: rgba(93, 155, 209, 0.1);
+            --h6: #9b7fd4;
+            --h6-bg: rgba(155, 127, 212, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--sans);
+            background-color: var(--bg-0);
+            color: var(--text-0);
+            padding: 0;
+            line-height: 1.75;
+            background-image: radial-gradient(circle at 15% 5%, rgba(212, 175, 122, 0.06), transparent 40%), radial-gradient(circle at 90% 0%, rgba(212, 175, 122, 0.04), transparent 35%);
+            overflow-x: hidden;
+        }
+        
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(14px) saturate(140%);
+            background: rgba(10, 10, 13, 0.72);
+            border-bottom: 1px solid var(--line);
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        header p {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 13px;
+            letter-spacing: 0.04em;
+            color: var(--text-1);
+        }
+        
+        header p::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 10px 2px rgba(212, 175, 122, 0.6);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+        
+        header nav a {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--text-1);
+            border: 1px solid var(--line);
+            padding: 6px 14px;
+            border-radius: 100px;
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+        
+        header nav a:hover {
+            color: var(--gold);
+            border-color: var(--gold-soft);
+            background: rgba(212, 175, 122, 0.08);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero {
+            padding: 88px 0 48px;
+        }
+        
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 12.5px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+            opacity: 0;
+            animation: rise 0.7s ease forwards 0.05s;
+        }
+        
+        .eyebrow::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold-soft), transparent);
+        }
+        
+        .hero-text-h1 {
+            font-family: var(--sans);
+            font-weight: 800;
+            font-size: clamp(34px, 6vw, 52px);
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+            color: var(--text-0);
+            opacity: 0;
+            animation: rise 0.8s ease forwards 0.15s;
+        }
+        
+        .hero-text-h1 .accent {
+            background: linear-gradient(100deg, var(--gold) 10%, #f0d9ad 50%, var(--gold) 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-text-p {
+            font-size: 17px;
+            color: var(--text-1);
+            max-width: 560px;
+            opacity: 0;
+            animation: rise 0.8s ease forwards 0.25s;
+        }
+        
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card {
+            background: linear-gradient(165deg, var(--bg-1), var(--bg-2));
+            border: 1px solid var(--line);
+            padding: 32px 36px;
+            margin-bottom: 28px;
+            border-radius: 16px;
+            border-top: 3px solid var(--gold);
+            box-shadow: 0 14px 32px -18px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        
+        .card.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -15%;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(212, 175, 122, 0.07), transparent 70%);
+            pointer-events: none;
+        }
+        
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 14px;
+            font-family: var(--sans);
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: -0.01em;
+            color: var(--text-0);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card>p {
+            color: var(--text-1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        ul {
+            margin-top: 14px;
+            padding-left: 0;
+            list-style: none;
+            position: relative;
+            z-index: 1;
+        }
+        
+        ul li {
+            padding: 9px 0;
+            border-bottom: 1px solid var(--line);
+            color: var(--text-1);
+            font-size: 15px;
+        }
+        
+        ul li:last-child {
+            border-bottom: none;
+        }
+        
+        pre {
+            background: linear-gradient(170deg, var(--bg-1), #0d0d11);
+            border: 1px solid var(--line);
+            border-left: 3px solid var(--gold);
+            padding: 18px 20px;
+            overflow-x: auto;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: var(--mono);
+            color: #d6d4e0;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 12px 30px -14px rgba(0, 0, 0, 0.6);
+        }
+        
+        pre::before {
+            content: '● ● ●';
+            display: block;
+            letter-spacing: 4px;
+            font-size: 9px;
+            color: var(--text-2);
+            margin-bottom: 10px;
+        }
+        
+        pre code {
+            padding: 0;
+        }
+        
+        .note {
+            border-left: 3px solid var(--gold-soft);
+            padding: 4px 0 4px 16px;
+            margin-top: 16px;
+            color: var(--text-1);
+            font-size: 14.5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .note::before {
+            content: "💡 ";
+            display: inline-block;
+            margin-right: 4px;
+            font-size: 16px;
+        }
+        
+        .note b {
+            color: var(--gold);
+        }
+        
+        .text-center {
+            text-align: center;
+            padding: 30px 0 10px;
+        }
+        
+        .text-center a {
+            text-decoration: none;
+            color: var(--text-0);
+            font-weight: 600;
+            font-size: 15px;
+            font-family: var(--mono);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--line);
+            padding: 10px 22px;
+            border-radius: 100px;
+            transition: all 0.25s ease;
+        }
+        
+        .text-center a:hover {
+            color: var(--gold);
+            border-color: var(--gold-soft);
+            background: rgba(212, 175, 122, 0.08);
+            transform: translateY(-2px);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 12.5px;
+            font-family: var(--mono);
+            margin-right: 10px;
+            letter-spacing: 0.04em;
+        }
+        
+        .badge-h1 {
+            background-color: var(--h1-bg);
+            color: var(--h1);
+            border: 1px solid var(--h1);
+        }
+        
+        .badge-h2 {
+            background-color: var(--h2-bg);
+            color: var(--h2);
+            border: 1px solid var(--h2);
+        }
+        
+        .badge-h3 {
+            background-color: var(--h3-bg);
+            color: var(--h3);
+            border: 1px solid var(--h3);
+        }
+        
+        .badge-h4 {
+            background-color: var(--h4-bg);
+            color: var(--h4);
+            border: 1px solid var(--h4);
+        }
+        
+        .badge-h5 {
+            background-color: var(--h5-bg);
+            color: var(--h5);
+            border: 1px solid var(--h5);
+        }
+        
+        .badge-h6 {
+            background-color: var(--h6-bg);
+            color: var(--h6);
+            border: 1px solid var(--h6);
+        }
+        /* Card 2 heading sizes */
+        
+        .card-examples h1 {
+            font-size: 2em;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+        
+        .card-examples h2 {
+            font-size: 1.5em;
+        }
+        
+        .card-examples h3 {
+            font-size: 1.17em;
+        }
+        
+        .card-examples h4 {
+            font-size: 1em;
+        }
+        
+        .card-examples h5 {
+            font-size: 0.83em;
+        }
+        
+        .card-examples h6 {
+            font-size: 0.67em;
+        }
+        
+        .card-examples h1,
+        .card-examples h2,
+        .card-examples h3,
+        .card-examples h4,
+        .card-examples h5,
+        .card-examples h6 {
+            font-family: var(--sans);
+            font-weight: 700;
+            padding: 8px 14px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.01em;
+        }
+        
+        .card-examples h1 {
+            border: 1px solid var(--h1);
+            background-color: var(--h1-bg);
+            color: var(--h1);
+        }
+        
+        .card-examples h2 {
+            border: 1px solid var(--h2);
+            background-color: var(--h2-bg);
+            color: var(--h2);
+        }
+        
+        .card-examples h3 {
+            border: 1px solid var(--h3);
+            background-color: var(--h3-bg);
+            color: var(--h3);
+        }
+        
+        .card-examples h4 {
+            border: 1px solid var(--h4);
+            background-color: var(--h4-bg);
+            color: var(--h4);
+        }
+        
+        .card-examples h5 {
+            border: 1px solid var(--h5);
+            background-color: var(--h5-bg);
+            color: var(--h5);
+        }
+        
+        .card-examples h6 {
+            border: 1px solid var(--h6);
+            background-color: var(--h6-bg);
+            color: var(--h6);
+        }
+        
+         ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background: var(--bg-0);
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: var(--bg-2);
+            border-radius: 10px;
+        }
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-soft);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 16px 60px;
+            }
+            .hero {
+                padding: 64px 0 36px;
+            }
+            .card {
+                padding: 24px 22px;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        a:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <p>เรียนรู้เว็บเบื้องต้น</p>
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <section class="hero">
+            <p class="eyebrow">684259042 // WORKSHOP 03</p>
+            <h1 class="hero-text-h1">แบบฝึกปฏิบัติ HTML <span class="accent">Heading</span></h1>
+            <p class="hero-text-p">ฝึกใช้แท็ก &lt;h1&gt; – &lt;h6&gt; และการปรับขนาดหัวข้อด้วย CSS</p>
+        </section>
+
+        <!-- Card 1: ความหมายของ Headings -->
+        <section class="card">
+            <h2>1. ความหมายของ Headings (H1–H6)</h2>
+            <p>HTML มีหัวข้อทั้งหมด 6 ระดับ:</p>
+            <ul>
+                <li><span class="badge badge-h1">H1</span> – หัวข้อใหญ่สุด ใช้สำหรับชื่อหน้าเว็บหรือหัวข้อหลัก</li>
+                <li><span class="badge badge-h2">H2</span> – หัวข้อรอง แบ่ง Section ของเนื้อหา</li>
+                <li><span class="badge badge-h3">H3</span> – หัวข้อย่อยภายใน H2</li>
+                <li><span class="badge badge-h4">H4</span> – ย่อยลงไปอีกระดับ</li>
+                <li><span class="badge badge-h5">H5</span> – ใช้น้อย แต่เน้นลำดับข้อมูล</li>
+                <li><span class="badge badge-h6">H6</span> – เล็กสุด ใช้กับหัวข้อระดับลึก</li>
+            </ul>
+            <div class="note">
+                <b>คำแนะนำ:</b> H1 ควรมีเพียง 1 อันในแต่ละหน้า เพื่อช่วย SEO และโครงสร้างเอกสาร
+            </div>
+        </section>
+
+        <section class="card card-examples">
+            <h2>2. ตัวอย่างการใช้ H1–H6</h2>
+            <pre><code>
+&lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+&lt;h2&gt;HTML Basics&lt;/h2&gt;
+&lt;h3&gt;What is HTML?&lt;/h3&gt;
+&lt;h4&gt;HTML Syntax&lt;/h4&gt;
+&lt;h5&gt;Example Code&lt;/h5&gt;
+&lt;h6&gt;Note: Case Sensitive&lt;/h6&gt;
+            </code></pre>
+
+            <p>เมื่อแสดงผลจะได้ขนาดลดหลั่นแบบนี้:</p>
+
+            <h1>H1: Welcome to My Website</h1>
+            <h2>H2: HTML Basics</h2>
+            <h3>H3: What is HTML?</h3>
+            <h4>H4: HTML Syntax</h4>
+            <h5>H5: Example Code</h5>
+            <h6>H6: Note about heading size</h6>
+        </section>
+
+        <!-- ปุ่มกลับ -->
+        <p class="text-center">
+            <a href="index.html">🏠 Back to Home</a>
+        </p>
+
+    </div>
+
+    <script>
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+        cards.forEach(c => observer.observe(c));
+    </script>
+
+</body>
+
+</html>
